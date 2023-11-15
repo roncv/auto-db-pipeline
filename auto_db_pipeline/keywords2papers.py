@@ -5,6 +5,7 @@ Simple implementation:
 pubmed_results = k2p.get_pubmed()
 biorxiv_results = k2p.get_biorxiv()```
 """
+from __future__ import annotations
 import re
 from typing import Union
 from datetime import date
@@ -14,9 +15,24 @@ from paperscraper.utils import dump_papers
 from paperscraper.get_dumps.biorxiv import biorxiv
 from pandas import read_json
 from os.path import isfile
-from constants import DATEFORMAT, KEYWORDS
+from .constants import DATEFORMAT, KEYWORDS
+
 
 # pylint: disable=dangerous-default-value
+
+# DATEFORMAT = "%Y_%m_%d"
+
+# KEYWORDS = [
+#             ['SARS-CoV-2', 'COVID-19', 'coronavirus', 'SARS-CoV', 'MERS-CoV', 'SARS'],
+
+#             ['antibody', 'antibodies', 'nanobody', 'immunoglobulin', 'MAb', 'nanobodies'],
+
+#             ['neutralizing', 'neutralize', 'neutralization', 'bind', 'binding',
+#                 'inhibit', 'targeting'],
+
+#             ['heavy chain', 'complementarity determining region', 'gene',
+#                 'epitope', 'receptor-binding domain', 'rbd', 'spike protein', 'VHH']
+#             ]
 
 
 #KEYWORDS = [
@@ -130,7 +146,7 @@ class Keywords2Papers:
         return output
 
 
-    def store_output(self, output: list[dict], filename: str):
+    def store_output(self, output:list[dict], filename: str): #: 
         Keywords2Papers.check_filename(filename)
         dump_papers(output, self.get_filepath(filename))
 
@@ -147,7 +163,7 @@ class Keywords2Papers:
         return date.today().strftime(DATEFORMAT)
 
 
-    def fetch_biorxiv_local(self, keywords: list[Union[str, list[str]]]) -> list[dict]:
+    def fetch_biorxiv_local(self, keywords:list[Union[str, list[str]]]) -> list[dict]: # :   # 
         """
         Search for papers in the dump using keywords.
         Args:
