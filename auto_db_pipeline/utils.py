@@ -2,8 +2,9 @@
 Helper functions required for the pipeline
 '''
 
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 
 def load_keywords(filepath):
     '''Load disease specific keywords from text file'''
