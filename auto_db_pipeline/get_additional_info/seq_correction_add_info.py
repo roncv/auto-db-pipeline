@@ -1,8 +1,8 @@
 from Bio.SeqUtils import seq1
 import pandas as pd
-from igblastnprocess import IGBLASTprocess
-from igblastnprocess import get_vdj_of_species
-from retrieve_cdr_germlines import get_CDRs_and_germlines
+from .igblastnprocess import IGBLASTprocess
+from .igblastnprocess import get_vdj_of_species
+from .retrieve_cdr_germlines import get_CDRs_and_germlines
 import re
 
 igblastprocess = IGBLASTprocess()

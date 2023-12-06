@@ -1,6 +1,6 @@
 import pandas as pd
-from seq_correction_add_info import standardise_seqs
-from seq_correction_add_info import correction_and_add_cdrs
+from .seq_correction_add_info import standardise_seqs
+from .seq_correction_add_info import correction_and_add_cdrs
 import time
 from functools import reduce
 

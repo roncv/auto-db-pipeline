@@ -9,13 +9,13 @@ from __future__ import annotations
 import re
 from typing import Union
 from datetime import date
-#import paperscraper
+import paperscraper
 from paperscraper.pubmed import get_query_from_keywords_and_date
 from paperscraper.pubmed import get_pubmed_papers
 from paperscraper.utils import dump_papers
 from paperscraper.get_dumps.biorxiv import biorxiv
-#from paperscraper.get_dumps.chemrxiv import chemrxiv
-#from paperscraper.get_dumps.medrxiv import medrxiv
+from paperscraper.get_dumps.chemrxiv import chemrxiv
+from paperscraper.get_dumps.medrxiv import medrxiv
 from pandas import read_json
 from os.path import isfile
 from .constants import DATEFORMAT, KEYWORDS
