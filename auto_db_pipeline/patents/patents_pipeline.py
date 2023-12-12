@@ -21,7 +21,8 @@ def get_keywords(disease_keywords):
         ["neutralize", "bind", "inhibit", "target"],
         ["heavy chain", "CDR", "monoclonal", "polyclonal", "amino acid", "sequence"],
     ]
-    KEYWORDS_patents.insert(0, disease_keywords.split(", "))
+    #print(disease_keywords)
+    #KEYWORDS_patents.insert(0, disease_keywords.split(", "))
     return KEYWORDS_patents
 
 

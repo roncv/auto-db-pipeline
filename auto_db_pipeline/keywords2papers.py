@@ -57,7 +57,7 @@ FILENAME_PUBMED = "pubmed_results"
 FILENAME_BIORXIV = "biorxiv_results"
 FILENAME_BIORXIV_ALL = "biorxiv_all"
 
-DATAPATH = "../data/keywords2papers/"
+DATAPATH = "./data/keywords2papers/"
 DATATYPE = ".jsonl"
 
 class Keywords2Papers:
@@ -185,6 +185,7 @@ class Keywords2Papers:
         fields = ["title", "abstract"]
         df_all = read_json(path_or_buf = self.get_filepath(FILENAME_BIORXIV_ALL),
                               lines = True, orient = 'records')
+        print(df_all['date'])
         df_all["date"] = [date.strftime("%Y-%m-%d") for date in df_all["date"]]
 
         # The below is copied almost exactly from: "paperscraper/xrxiv/xrxiv_query.py"
@@ -233,13 +234,17 @@ class Keywords2Papers:
         print('fetching pubmed')
 
         papers_output = Keywords2Papers._query_pubmed(keywords, fields, start_date, end_date)
+        
+        # with preprint
         papers_pt_output = Keywords2Papers._query_pubmed(keywords+['AND preprint[pt]'],
                                                         fields, start_date, end_date)
         output = papers_output + papers_pt_output
 
         # The below is an important line of code that fixes the earlier
         # problem where the journal field was missing
+        print(f"1: {output}")
         output = [{field: entry.get(field, None) for field in fields} for entry in output]
+        print(f"2: {output}")
 
         output = Keywords2Papers.remove_bottom_dois(output)
         output = Keywords2Papers.convert_pubmed_authors(output)
@@ -275,8 +280,14 @@ class Keywords2Papers:
         # Translate keywords into query.
         query = get_query_from_keywords_and_date(keywords=keywords, start_date=start_date,
                                                 end_date=end_date)
-        output = get_pubmed_papers(query, fields)
+        print(query)
+        print(fields)
+        #print(query)
+        output = get_pubmed_papers(query, fields, max_results=1000)
+        print('1')
+        print(f"1: {output}")
         output = [{field: entry.get(field, None) for field in fields} for entry in output]
+        print(f"2: {output}")
         return output
 
 

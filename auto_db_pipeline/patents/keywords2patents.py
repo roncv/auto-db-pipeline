@@ -107,7 +107,9 @@ class Patents:
                 )
                 headers = {"User-Agent": get_random_ua()}
                 req = requests.get(url_first_half + "&exp=", headers=headers)
+                print(req)
                 main_data = req.json()
+                print(main_data)
                 pages = main_data["results"]["total_num_pages"]
                 data = main_data["results"]["cluster"]
                 print(f"Year {j}, {pages} pages")

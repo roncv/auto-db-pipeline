@@ -19,15 +19,16 @@ def get_all_fucking_sequences():
   known_antigens = load_known_antigens('./src/covid_known_antigens.txt')
 
   ''' Search for seqs from patents'''
-  get_seq_from_patents(keywords_disease)
-  print(keywords_disease)
+  #get_seq_from_patents(keywords_disease)
+  #print(keywords_disease)
 
   ''' Search for seqs from SI '''
   k2p = Keywords2Papers(keywords_disease)
-  pubmed_results = k2p.get_pubmed()
-  biorxiv_results = k2p.get_biorxiv()
-  paper_urls = papers2urls(pubmed_results, biorxiv_results)
-  get_seqs_from_supp(paper_urls)
+  #pubmed_results = k2p.get_pubmed() # NOTE: reinstate this part of the code
+  #biorxiv_results = k2p.get_biorxiv()
+  #paper_urls = papers2urls(pubmed_results, biorxiv_results)
+  #paper_urls = papers2urls(biorxiv_results)
+  #get_seqs_from_supp(paper_urls)
   #print(paper_urls)
 
   ''' Search seqs from pdb'''
